@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseAPIUrl: 'https://api.spacexdata.com/',  
+  launchUrl: 'v3/launches/past',
+  latestNoRecords:10
 };
 
 /*

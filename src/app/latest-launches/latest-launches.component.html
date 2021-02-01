@@ -1,0 +1,40 @@
+<mat-table [dataSource]="dataSource">
+
+    <ng-container  matColumnDef="flight_number">
+        <mat-header-cell *matHeaderCellDef>Flight number</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.flight_number}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="mission_name">
+        <mat-header-cell *matHeaderCellDef>Mission name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.mission_name}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="launch_date_local">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.launch_date_local}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="rocket_type">
+        <mat-header-cell *matHeaderCellDef>Rocket type</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.rocket.rocket_type}}</mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="land_success">
+        <mat-header-cell *matHeaderCellDef>Cores Landed</mat-header-cell> 
+            <mat-cell *matCellDef="let element">
+                <div *ngIf="element.rocket.first_stage.cores[0].landing_intent != 0; else elseDiv">
+                    Yes
+                </div>
+                <ng-template #elseDiv>
+                    ---------------
+                </ng-template>
+               
+            </mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="customer">
+        <mat-header-cell *matHeaderCellDef>Customer</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.rocket.second_stage.payloads[0].customers[0]}}</mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+    <div></div>
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+
+</mat-table>
